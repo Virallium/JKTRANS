@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block loading_css %}
+    <div class="loading_animation">
+        <img src="{% static 'photos/logo_jktrans.jpg' %}" alt="Loading...">
+    </div>
+{% endblock loading_css %}
+
+{% block animation_js %}
+    <script>
+        window.addEventListener('load', function() {
+            const loadingAnimation = document.querySelector('.loading_animation');
+            if (loadingAnimation) {
+                loadingAnimation.classList.add('fade-out');
+                setTimeout(function() {
+                    loadingAnimation.style.display = 'none';
+                }, 500);
+            }
+        })
+    </script>
+{% endblock animation_js %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - JK Trans & Services{% endblock %}
+{% block nav %}{% endblock nav %}
+
+{% block primary_content %}
+<section class="auth-page">
+    <div class="admin-form-card" data-aos="fade-up">
+        <h2>{{ title }}</h2>
+        <p>{% if request.LANGUAGE_CODE == 'en' %}Fill in the fields below to save or update this driver.{% else %}Remplissez les informations ci-dessous pour enregistrer ou mettre à jour ce chauffeur.{% endif %}</p>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="admin-form-grid">
+                {% for field in form %}
+                    <div class="auth-field">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="form-messages">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="admin-form-actions">
+                <button type="submit" class="btn auth-btn">{% if request.LANGUAGE_CODE == 'en' %}Save{% else %}Enregistrer{% endif %}</button>
+                <a href="{% url 'Admin' %}" class="admin-link">{% if request.LANGUAGE_CODE == 'en' %}Back to dashboard{% else %}Retour au tableau de bord{% endif %}</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock primary_content %}
+{% block contents %}{% endblock contents %}
+{% block footer %}{% endblock footer %}

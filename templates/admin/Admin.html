@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{% if request.LANGUAGE_CODE == 'en' %}Admin dashboard - JK Trans & Services{% else %}Tableau de bord admin - JK Trans & Services{% endif %}{% endblock title %}
+{% block nav %}{% endblock nav %}
+
+{% block primary_content %}
+<section class="admin-dashboard">
+    <div class="admin-dashboard-header">
+        <div>
+            <p class="admin-eyebrow">{% if request.LANGUAGE_CODE == 'en' %}Admin panel{% else %}Panneau d’administration{% endif %}</p>
+            <h1>{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services fleet management{% else %}Gestion de la flotte JK Trans & Services{% endif %}</h1>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Monitor vehicles, drivers and reservations from one place.{% else %}Supervisez les véhicules, les chauffeurs et les réservations depuis un seul espace.{% endif %}</p>
+        </div>
+        <a href="{% url 'home' %}" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Back to site{% else %}Retour au site{% endif %}</a>
+    </div>
+
+    <div class="admin-stats">
+        <div class="admin-stat-card" data-aos="fade-up">
+            <i class="fa-solid fa-car"></i>
+            <div>
+                <h3>{{ vehicules|length }}</h3>
+                <p>{% if request.LANGUAGE_CODE == 'en' %}Vehicles registered{% else %}Véhicules enregistrés{% endif %}</p>
+            </div>
+        </div>
+        <div class="admin-stat-card" data-aos="fade-up" data-aos-delay="100">
+            <i class="fa-solid fa-user-tie"></i>
+            <div>
+                <h3>{{ chauffeurs|length }}</h3>
+                <p>{% if request.LANGUAGE_CODE == 'en' %}Drivers available{% else %}Chauffeurs disponibles{% endif %}</p>
+            </div>
+        </div>
+        <div class="admin-stat-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fa-solid fa-calendar-check"></i>
+            <div>
+                <h3>0</h3>
+                <p>{% if request.LANGUAGE_CODE == 'en' %}Active reservations{% else %}Réservations actives{% endif %}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-panels">
+        <div class="admin-panel" data-aos="fade-up">
+            <div class="admin-panel-header">
+                <h2><i class="fa-solid fa-car-side"></i> {% if request.LANGUAGE_CODE == 'en' %}Vehicles{% else %}Véhicules{% endif %}</h2>
+                <a href="{% url 'vehicule_create' %}" class="admin-link-btn">+ {% if request.LANGUAGE_CODE == 'en' %}Add{% else %}Ajouter{% endif %}</a>
+            </div>
+            <div class="admin-list">
+                {% for vehicule in vehicules %}
+                    <div class="admin-list-item">
+                        <div>
+                            <strong>{{ vehicule.marque }} {{ vehicule.modele }}</strong>
+                            <p>{{ vehicule.plaque }} • {{ vehicule.prix }} $ / jour</p>
+                        </div>
+                        <div class="admin-actions">
+                            <a href="{% url 'vehicule_update' vehicule.pk %}">{% if request.LANGUAGE_CODE == 'en' %}Edit{% else %}Modifier{% endif %}</a>
+                            <a href="{% url 'vehicule_delete' vehicule.pk %}" class="danger" onclick="return confirm('{% if request.LANGUAGE_CODE == 'en' %}Are you sure you want to delete this vehicle?{% else %}Voulez-vous vraiment supprimer ce véhicule ?{% endif %}')">{% if request.LANGUAGE_CODE == 'en' %}Delete{% else %}Supprimer{% endif %}</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="admin-empty">{% if request.LANGUAGE_CODE == 'en' %}No vehicles registered yet.{% else %}Aucun véhicule enregistré pour le moment.{% endif %}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="admin-panel" data-aos="fade-up" data-aos-delay="100">
+            <div class="admin-panel-header">
+                <h2><i class="fa-solid fa-id-card"></i> {% if request.LANGUAGE_CODE == 'en' %}Drivers{% else %}Chauffeurs{% endif %}</h2>
+                <a href="{% url 'chauffeur_create' %}" class="admin-link-btn">+ {% if request.LANGUAGE_CODE == 'en' %}Add{% else %}Ajouter{% endif %}</a>
+            </div>
+            <div class="admin-list">
+                {% for chauffeur in chauffeurs %}
+                    <div class="admin-list-item">
+                        <div>
+                            <strong>{{ chauffeur.nom }} {{ chauffeur.prenom }}</strong>
+                            <p>{{ chauffeur.telephone }} • {{ chauffeur.email }}</p>
+                        </div>
+                        <div class="admin-actions">
+                            <a href="{% url 'chauffeur_update' chauffeur.pk %}">{% if request.LANGUAGE_CODE == 'en' %}Edit{% else %}Modifier{% endif %}</a>
+                            <a href="{% url 'chauffeur_delete' chauffeur.pk %}" class="danger" onclick="return confirm('{% if request.LANGUAGE_CODE == 'en' %}Are you sure you want to delete this driver?{% else %}Voulez-vous vraiment supprimer ce chauffeur ?{% endif %}')">{% if request.LANGUAGE_CODE == 'en' %}Delete{% else %}Supprimer{% endif %}</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="admin-empty">{% if request.LANGUAGE_CODE == 'en' %}No drivers registered yet.{% else %}Aucun chauffeur enregistré pour le moment.{% endif %}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock primary_content %}
+{% block contents %}{% endblock contents %}
+{% block footer %}{% endblock footer %}

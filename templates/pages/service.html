@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{% if request.LANGUAGE_CODE == 'en' %}Services - JK Trans & Services{% else %}Services - JK Trans & Services{% endif %}{% endblock title %}
+
+{% block primary_content %}
+<section class="page-section">
+    <div class="page-intro">
+        <h1>{% if request.LANGUAGE_CODE == 'en' %}Our services{% else %}Nos services{% endif %}</h1>
+        <p>{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services offers transportation solutions tailored to your needs, in Kinshasa and the surrounding area.{% else %}JK Trans & Services met à votre disposition des solutions de transport adaptées à vos besoins, à Kinshasa et dans ses environs.{% endif %}</p>
+    </div>
+</section>
+{% endblock primary_content %}
+
+{% block contents %}
+<section class="page-section">
+    <div class="service-grid">
+        <div class="contact-card" data-aos="fade-up">
+            <div class="card-icon"><i class="fa-solid fa-car"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Car rental{% else %}Location de voitures{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Choose from a variety of modern vehicles for your personal, business, or family trips.{% else %}Choisissez parmi une variété de véhicules modernes pour vos trajets personnels, professionnels ou familiaux.{% endif %}</p>
+        </div>
+
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon"><i class="fa-solid fa-user-tie"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Rental with driver{% else %}Location avec chauffeur{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Enjoy premium service with an experienced driver for more comfortable and stress-free travel.{% else %}Profitez d’un service premium avec chauffeur expérimenté pour des déplacements plus confortables et sereins.{% endif %}</p>
+        </div>
+
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Event transportation{% else %}Transport pour événements{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}We support weddings, ceremonies, official visits and other special events with punctuality and elegance.{% else %}Nous accompagnons vos mariages, cérémonies, visites officielles et autres événements spéciaux avec ponctualité et élégance.{% endif %}</p>
+        </div>
+
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}VIP travel{% else %}Déplacements VIP{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}For your most important trips, we offer personalized, discreet and reliable service.{% else %}Pour vos trajets les plus importants, nous vous proposons un service personnalisé, discret et fiable.{% endif %}</p>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

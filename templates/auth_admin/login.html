@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Connexion administrateur - JK Trans & Services{% endblock title %}
+{% block nav %}{% endblock nav %}
+
+{% block primary_content %}
+<section class="auth-page admin-auth-page">
+    <div class="auth-card admin-auth-card" data-aos="fade-up">
+        <div class="auth-illustration admin-illustration">
+            <video class="auth-video" autoplay loop muted playsinline>
+                <source src="{% static 'media/videos/Flame Spitting McLaren 720s _ 4K.mp4' %}" type="video/mp4">
+            </video>
+            <i class="fa-solid fa-user-shield"></i>
+            <h1>{% if request.LANGUAGE_CODE == 'en' %}Administrator area{% else %}Espace administrateur{% endif %}</h1>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Log in to access the dashboard, manage vehicles, drivers and reservations.{% else %}Connectez-vous pour accéder au tableau de bord, gérer les véhicules, les chauffeurs et les réservations.{% endif %}</p>
+        </div>
+
+        <div class="auth-form-panel">
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Admin login{% else %}Connexion admin{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Enter your credentials to access your secure admin area.{% else %}Accédez à votre espace sécurisé avec vos identifiants.{% endif %}</p>
+
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="form-error non-field-errors">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                <div class="auth-field">
+                    <label for="email">{% if request.LANGUAGE_CODE == 'en' %}Email{% else %}Adresse email{% endif %}</label>
+                    <input type="email" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" placeholder="{% if request.LANGUAGE_CODE == 'en' %}Your email{% else %}Votre adresse email{% endif %}" required>
+                    {% if form.email.errors %}
+                        <div class="form-error">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="auth-field">
+                    <label for="mot_de_passe">{% if request.LANGUAGE_CODE == 'en' %}Password{% else %}Mot de passe{% endif %}</label>
+                    <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="{% if request.LANGUAGE_CODE == 'en' %}Your password{% else %}Votre mot de passe{% endif %}" required>
+                    {% if form.mot_de_passe.errors %}
+                        <div class="form-error">{{ form.mot_de_passe.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn auth-btn">{% if request.LANGUAGE_CODE == 'en' %}Sign in{% else %}Se connecter{% endif %}</button>
+            </form>
+            {% if messages %}
+                <div class="auth-messages">
+                    {% for message in messages %}
+                        <div class="message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="auth-links">
+                <a href="{% url 'home' %}">{% if request.LANGUAGE_CODE == 'en' %}Back to site{% else %}Retour au site{% endif %}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock primary_content %}
+{% block contents %}{% endblock contents %}
+{% block footer %}{% endblock footer %}

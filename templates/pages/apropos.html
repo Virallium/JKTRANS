@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{% if request.LANGUAGE_CODE == 'en' %}About us - JK Trans & Services{% else %}À propos - JK Trans & Services{% endif %}{% endblock title %}
+
+{% block primary_content %}
+<section class="page-section">
+    <div class="page-intro">
+        <h1>{% if request.LANGUAGE_CODE == 'en' %}About JK Trans & Services{% else %}À propos de JK Trans & Services{% endif %}</h1>
+        <p>{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services is a vehicle rental and transport service agency in Kinshasa, Meta Verified, offering modern, comfortable and reliable cars for all your trips.{% else %}JK Trans & Services est une agence de location de véhicules et services de transport à Kinshasa, abonnée Meta Verified, spécialisée dans la mise à disposition de voitures modernes, confortables et fiables pour tous vos déplacements.{% endif %}</p>
+    </div>
+</section>
+{% endblock primary_content %}
+
+{% block contents %}
+<section class="page-section">
+    <div class="about-grid">
+        <div class="contact-card" data-aos="fade-up">
+            <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Our mission{% else %}Notre mission{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}We aim to provide our customers with a simple, secure and comfortable mobility experience, with well-maintained vehicles and quality service.{% else %}Nous voulons offrir à nos clients une expérience de mobilité simple, sécurisée et confortable, avec des véhicules bien entretenus et un service de qualité.{% endif %}</p>
+        </div>
+
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon"><i class="fa-solid fa-star"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Why choose JK Trans & Services?{% else %}Pourquoi choisir JK Trans & Services ?{% endif %}</h2>
+            <ul>
+                <li>{% if request.LANGUAGE_CODE == 'en' %}Modern, well-maintained fleet{% else %}Flotte récente et bien entretenue{% endif %}</li>
+                <li>{% if request.LANGUAGE_CODE == 'en' %}Experienced professional drivers{% else %}Chauffeurs expérimentés et professionnels{% endif %}</li>
+                <li>{% if request.LANGUAGE_CODE == 'en' %}Responsive customer-oriented service{% else %}Réactivité et service orienté client{% endif %}</li>
+                <li>{% if request.LANGUAGE_CODE == 'en' %}Available for daily travel and special events{% else %}Disponibilité pour les déplacements quotidiens et événements spéciaux{% endif %}</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

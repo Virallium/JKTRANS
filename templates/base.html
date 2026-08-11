@@ -1,0 +1,352 @@
+{% load static %}
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services is Meta Verified and offers vehicle rental and transport services in Kinshasa.{% else %}JK Trans & Services a un abonnement Meta Verified. Location de voitures et services de transport professionnels à Kinshasa.{% endif %}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="JK Trans & Services, vehicle rental, Kinshasa, RDC, transport, Meta Verified">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services - Vehicle rental in Kinshasa{% else %}JK Trans & Services - Location de véhicules à Kinshasa{% endif %}">
+    <meta property="og:description" content="{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services is Meta Verified — reliable vehicle rental and transport services in Kinshasa. Contact +243 981 446 804.{% else %}JK Trans & Services a un abonnement Meta Verified — services de location de voitures et transport professionnel à Kinshasa. Contactez +243 981 446 804.{% endif %}">
+    <meta property="og:image" content="https://scontent.fbzv3-2.fna.fbcdn.net/v/t39.30808-6/729889754_1040660151641692_5556520489630294760_n.jpg?stp=dst-jpg_tt6&cstp=mx1254x1254&ctp=s1254x1254&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=LGNsaTSlFxcQ7kNvwHd-cec&_nc_oc=AdoZKTB0D4bO8kqKxh-8jgHWS0VRkqosGydgLVWVr98UL_mChZuiY4DBcoLhjMvuDbmvHoDEHy2YsTzYIHlUCK0x&_nc_zt=23&_nc_ht=scontent.fbzv3-2.fna&_nc_gid=f2VhhxL_EWnGTY5PSaa6wQ&_nc_ss=782a8&oh=00_AQFwUBuu86V8uhZd3l_0eHyeddtqW-3FTO91uE74velmfw&oe=6A786FF3">
+    <meta property="og:url" content="https://jktrans-services.example/">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% if request.LANGUAGE_CODE == 'en' %}Home - JK Trans & Services{% else %}Accueil - JK Trans & Services{% endif %}</title>
+    <link rel="shortcut icon" href="{% static 'media/photos/logo_jktrans.jpg' %}" type="image/svg+xml">
+
+    <!-- Données structurées Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoRental",
+    "name": "JK Trans & Services",
+      "image": "https://scontent.fbzv3-2.fna.fbcdn.net/v/t39.30808-6/729889754_1040660151641692_5556520489630294760_n.jpg?stp=dst-jpg_tt6&cstp=mx1254x1254&ctp=s1254x1254&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=LGNsaTSlFxcQ7kNvwHd-cec&_nc_oc=AdoZKTB0D4bO8kqKxh-8jgHWS0VRkqosGydgLVWVr98UL_mChZuiY4DBcoLhjMvuDbmvHoDEHy2YsTzYIHlUCK0x&_nc_zt=23&_nc_ht=scontent.fbzv3-2.fna&_nc_gid=f2VhhxL_EWnGTY5PSaa6wQ&_nc_ss=782a8&oh=00_AQFwUBuu86V8uhZd3l_0eHyeddtqW-3FTO91uE74velmfw&oe=6A786FF3",
+    "url": "https://jktrans-services.example/",
+    "telephone": "+243981446804",
+    "email": "jktransservices4@gmail.com",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kinshasa",
+        "addressCountry": "CD"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -4.32758,
+        "longitude": 15.31357
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+          ],
+          "opens": "08:00",
+          "closes": "20:00"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=tatami_seat" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- JS Scripts (deferred) -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="{% static 'js/style.js' %}" defer></script>
+</head>
+<body>
+    <main>
+        {% block loading_css %}{% endblock loading_css %}
+        <div class="rgba"></div>
+        <header>
+            {% block nav %}
+                <nav>
+                    <div class="logo">
+                        <img src="{% static 'photos/logo_jktrans.jpg' %}" alt="Logo JK Trans & Services">
+                    </div>
+                    <ul>
+                        <li><a href="{% url 'home' %}">{% if request.LANGUAGE_CODE == 'en' %}Home{% else %}{% trans "Accueil" %}{% endif %}</a></li>
+                        <li><a href="{% url 'apropos' %}">{% if request.LANGUAGE_CODE == 'en' %}About us{% else %}{% trans "À propos" %}{% endif %}</a></li>
+                        <li><a href="{% url 'service' %}">{% if request.LANGUAGE_CODE == 'en' %}Services{% else %}{% trans "Services" %}{% endif %}</a></li>
+                        <li><a href="{% url 'contact' %}">{% if request.LANGUAGE_CODE == 'en' %}Contact{% else %}{% trans "Contact" %}{% endif %}</a></li>
+                    </ul>
+                    
+                    <!-- Sélecteur de langue -->
+                    <div class="lang-form">
+                        <a href="{{ request.path }}?lang=fr" class="lang-link">Français</a>
+                        <a href="{{ request.path }}?lang=en" class="lang-link">English</a>
+                    </div>
+                    
+                    <div class="btns_conx">
+                        {% if request.session.admininfo_id %}
+                            <a href="{% url 'Admin' %}" id="connexion">Admin</a>
+                            <form action="{% url 'deconnexion' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" id="deconnexion">{% if request.LANGUAGE_CODE == 'en' %}Logout{% else %}{% trans "Déconnexion" %}{% endif %}</button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'connexion' %}" id="connexion">Admin</a>
+                        {% endif %}
+                        <i class="fa-solid fa-bars-staggered" id="menu"></i>
+                    </div>
+                </nav>
+            {% endblock nav %}
+
+            <!-- SECTION HEADER PRESENTATION -->
+            {% block primary_content %}
+                <div class="primary-section">
+                    <div class="primary_text" data-aos="fade-right" data-aos-duration="1000">
+                        <h1>
+                            {% if request.LANGUAGE_CODE == 'en' %}
+                                You have everything your vehicle can offer you: comfort, safety and the freedom to move around Kinshasa with peace of mind.
+                            {% else %}
+                                {% trans "Vous avez tout ce que votre véhicule a de mieux à vous offrir : le confort, la sécurité et la liberté de vous déplacer à Kinshasa en toute sérénité." %}
+                            {% endif %}
+                        </h1>
+                        <p>
+                            {% if request.LANGUAGE_CODE == 'en' %}
+                                Whether for your professional trips, a special event or a getaway, JK Trans & Services offers you a modern and well-maintained fleet. Take the wheel or let our experienced drivers take you there.
+                            {% else %}
+                                {% trans "Que ce soit pour vos déplacements professionnels, un événement spécial ou une escapade, JK Trans & Services met à votre disposition une flotte moderne et entretenue avec soin. Prenez le volant ou laissez-vous conduire par nos chauffeurs expérimentés." %}
+                            {% endif %}
+                        </p>
+                        <a href="{% url 'cars' %}" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Explore the fleet{% else %}{% trans "Explorer la flotte" %}{% endif %}</a>
+                    </div>
+                    <div class="pic" data-aos="zoom-in" data-aos-duration="1200">
+                        <img src="{% static 'photos/bg1.png' %}" alt="{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services car presentation mockup{% else %}Maquette de présentation véhicule JK Trans & Services{% endif %}">
+                    </div>
+                </div>
+
+                <!-- FORMULAIRE DE RECHERCHE -->
+                <div class="find_car" data-aos="fade-up" data-aos-duration="900">
+                    <form action="{% url 'cars' %}" method="get">
+                        <p style="text-align:center;">{% if request.LANGUAGE_CODE == 'en' %}Certified VIP Driver Service{% else %}{% trans "Service Chauffeur VIP Certifié" %}{% endif %}</p>
+                        <div class="input">
+                            <i class="fa-solid fa-car fa-float"></i>
+                            <label for="car_model">{% if request.LANGUAGE_CODE == 'en' %}MAKE / MODEL{% else %}{% trans "MARQUE / MODÈLE" %}{% endif %}</label>
+                            <input type="text" name="car_model" placeholder="Ex: Toyota Prado" id="car_model">
+                        </div>
+                        <div class="input">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <label for="lieu_model">{% if request.LANGUAGE_CODE == 'en' %}LOCATION{% else %}{% trans "LIEU" %}{% endif %}</label>
+                            <input type="text" name="location" placeholder="Kinshasa" id="lieu_model" value="Kinshasa">
+                        </div>
+                        <div class="date">
+                            <div class="input_date">
+                                <i class="fa-regular fa-calendar"></i>
+                                <label for="depart">{% if request.LANGUAGE_CODE == 'en' %}Start date{% else %}{% trans "Date de début" %}{% endif %}</label>
+                                <input type="date" name="depart" id="depart">
+                            </div>
+                            <div class="input_date">
+                                <i class="fa-regular fa-calendar"></i>
+                                <label for="arrive">{% if request.LANGUAGE_CODE == 'en' %}End date{% else %}{% trans "Date de fin" %}{% endif %}</label>
+                                <input type="date" name="arrive" id="arrive">
+                            </div>
+                        </div>
+                        <button type="submit">{% if request.LANGUAGE_CODE == 'en' %}Search{% else %}{% trans "Rechercher" %}{% endif %}</button>
+                    </form>
+                </div>
+            {% endblock primary_content %}
+        </header>
+
+        {% block contents %}
+            <!-- CATALOGUE DE VÉHICULES -->
+            <div class="catalog">
+                <h3>
+                    <span class="left_divider"></span>
+                    {% if request.LANGUAGE_CODE == 'en' %}Fleet & Models{% else %}Flotte & Modèles{% endif %}
+                    <span class="right_divider"></span>
+                </h3>
+                <h2>{% if request.LANGUAGE_CODE == 'en' %}A vehicle suited to every need{% else %}{% trans "Une voiture adaptée à chacun de vos besoins" %}{% endif %}</h2>
+                <p>{% if request.LANGUAGE_CODE == 'en' %}Browse our selection of recent vehicles. Book in a few clicks or directly on WhatsApp, with or without a driver.{% else %}{% trans "Parcourez notre sélection de véhicules récents. Réservez en quelques clics ou directement sur WhatsApp, avec ou sans chauffeur." %}{% endif %}</p>
+                
+                <div class="cars">
+                    {% for vehicle in cars %}
+                        <div class="car" data-aos="fade-up">
+                            <div class="car_img">
+                                <img src="{{ vehicle.image.url }}" alt="{{ vehicle.marque }} {{ vehicle.modele }}">
+                            </div>
+                            <div class="car_info">
+                                <h4>{{ vehicle.marque }} {{ vehicle.modele }}</h4>
+                                <p>{{ vehicle.description|truncatewords:20 }}</p>
+                                <h3>{{ vehicle.prix }} $/jour</h3>
+                                <div class="more_details">
+                                    <a href="{% url 'vehicle_detail' vehicle.pk %}" class="btn">{% if request.LANGUAGE_CODE == 'en' %}View details{% else %}{% trans "Voir détails" %}{% endif %}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="no-car">
+                                <i class="fa-solid fa-car-side"></i>
+                                <p>{% if request.LANGUAGE_CODE == 'en' %}No vehicles available right now.{% else %}Aucun véhicule disponible pour le moment.{% endif %}</p>
+                                        <div class="card_info">
+                                            <h4>{{ vehicle.marque }} {{ vehicle.modele }}</h4>
+                                            <p>{{ vehicle.description|truncatewords:15 }}</p>
+                                            <h3>{{ vehicle.prix }} $/jour</h3>
+                                            <a href="https://wa.me/243981446804?text=Bonjour%20JK%20Trans%20%26%20Services,%20je%20souhaite%20r%C3%A9server%20le%20v%C3%A9hicule%20{{ vehicle.marque }}%20{{ vehicle.modele }}" target="_blank" class="btn-wa">{% if request.LANGUAGE_CODE == 'en' %}Book{% else %}{% trans "Réserver" %}{% endif %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOS SERVICES EXCLUSIFS -->
+            <div class="services" id="services">
+                <h3>{% if request.LANGUAGE_CODE == 'en' %}Our Exclusive Services{% else %}Nos Services Exclusifs{% endif %}</h3>
+                <div class="service">
+                    <div class="card" data-aos="fade-up" data-aos-duration="800">
+                        <div class="service_img">
+                            <img src="{% static 'photos/bg2.png' %}" alt="{% if request.LANGUAGE_CODE == 'en' %}Chauffeur-driven rental service{% else %}Service de location avec chauffeur{% endif %}">
+                        </div>
+                        <div class="service_info">
+                            <h4>{% if request.LANGUAGE_CODE == 'en' %}Chauffeur-driven rental{% else %}Location avec chauffeur{% endif %}</h4>
+                            <p>{% if request.LANGUAGE_CODE == 'en' %}Enjoy a stress-free ride with our professional drivers, available to take you safely and comfortably wherever you need to go.{% else %}Profitez d'une expérience de conduite sans stress avec nos chauffeurs professionnels, disponibles pour vous conduire en toute sécurité et confort.{% endif %}</p>
+                        </div>
+                        <a href="https://wa.me/243981446804?text=Bonjour,%20je%20souhaite%20un%20devis%20pour%20une%20location%20avec%20chauffeur." target="_blank" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Request a quote{% else %}{% trans "Demander un devis" %}{% endif %}</a>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-duration="900" data-aos-delay="120">
+                        <div class="service_img">
+                            <img src="{% static 'photos/bg3.png' %}" alt="{% if request.LANGUAGE_CODE == 'en' %}Special event transport service{% else %}Service pour évènements spéciaux{% endif %}">
+                        </div>
+                        <div class="service_info">
+                            <h4>{% if request.LANGUAGE_CODE == 'en' %}Special event transportation{% else %}Manifestations & Événements Spéciaux{% endif %}</h4>
+                            <p>{% if request.LANGUAGE_CODE == 'en' %}Weddings, ceremonies or official travel: elegant, punctual motorcades at your service.{% else %}Mariages, cérémonies ou déplacements officiels : nous mettons à votre disposition un cortège élégant et ponctuel.{% endif %}</p>
+                        </div>
+                        <a href="{% url 'forfait' %}" target="_blank" class="btn">{% if request.LANGUAGE_CODE == 'en' %}View packages{% else %}{% trans "Voir les forfaits" %}{% endif %}</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHY CHOOSING US -->
+            <div class="choosing_us" id="about">
+                <h3>{% if request.LANGUAGE_CODE == 'en' %}Why choose us{% else %}Pourquoi nous choisir{% endif %}</h3>
+                <div class="choosing">
+                    <div class="card" data-aos="fade-up">
+                        <i class="fa-solid fa-car"></i>
+                        <h4>{% if request.LANGUAGE_CODE == 'en' %}Reliable modern vehicles{% else %}Véhicules récents et fiables{% endif %}</h4>
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}We offer a modern, well-maintained fleet that ensures safety and comfort for every trip.{% else %}Nous proposons une flotte de véhicules récents et bien entretenus, garantissant sécurité et confort pour tous vos déplacements.{% endif %}</p>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <h4>{% if request.LANGUAGE_CODE == 'en' %}Professional drivers{% else %}Chauffeurs professionnels{% endif %}</h4>
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}Our experienced drivers are trained to deliver polite, safe service for a pleasant journey.{% else %}Nos chauffeurs expérimentés sont formés pour offrir un service courtois et sûr, assurant une expérience agréable.{% endif %}</p>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-solid fa-clock"></i>
+                        <h4>{% if request.LANGUAGE_CODE == 'en' %}24/7 availability{% else %}Disponibilité 24/7{% endif %}</h4>
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}We are available at any time for urgent or planned trips.{% else %}Nous sommes disponibles à tout moment pour répondre à vos besoins de location, pour des trajets urgents ou planifiés.{% endif %}</p>
+                    </div>
+                </div>
+                <div class="middle_image">
+                    <div class="text">
+                        <h3>{% if request.LANGUAGE_CODE == 'en' %}Premium comfort for every journey{% else %}Confort premium pour chaque trajet{% endif %}</h3>
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}Our modern fleet is ready to take you across Kinshasa safely, with punctual drivers and seamless service.{% else %}Notre flotte moderne est prête à vous conduire à travers Kinshasa en toute sécurité, avec des chauffeurs ponctuels et un service sans faille.{% endif %}</p>
+                    </div>
+                    <img src="{% static 'photos/car_center.png' %}" alt="{% if request.LANGUAGE_CODE == 'en' %}Center car image{% else %}Véhicule au centre de l'écran{% endif %}">
+                    <div class="text">
+                        <h3>{% if request.LANGUAGE_CODE == 'en' %}Fast booking, instant support{% else %}Réservation rapide, assistance instantanée{% endif %}</h3>
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}Send us a WhatsApp message now and get a custom quote, any time of the day.{% else %}Envoyez-nous un message sur WhatsApp dès maintenant et recevez un devis personnalisé, à toute heure.{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TESTIMONIALS -->
+            <div class="testimony">
+                <h3>{% if request.LANGUAGE_CODE == 'en' %}What our clients say{% else %}Ce que nos clients disent{% endif %}</h3>
+                <div class="testimonies">
+                    <div class="card">
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}"I rented a 4x4 with a driver for a business event in Kinshasa and the experience was exceptional. On time and very discreet."{% else %}"J'ai loué un 4x4 avec chauffeur pour un événement professionnel à Kinshasa et l'expérience a été exceptionnelle. Ponctuel et très discret."{% endif %}</p>
+                        <h4>- Jean M.</h4>
+                    </div>
+                    <div class="card">
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}"The fleet is impressive and clean. I appreciated the quick booking ease via WhatsApp."{% else %}"La flotte de véhicules est impressionnante et propre. J'ai apprécié la facilité de réservation rapide sur WhatsApp."{% endif %}</p>
+                        <h4>- Marie K.</h4>
+                    </div>
+                    <div class="card">
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}"JK Trans & Services made my city travel much easier. Courteous drivers and ultra-comfortable vehicles."{% else %}"JK Trans & Services a rendu mes déplacements en ville beaucoup plus faciles. Chauffeurs courtois et véhicules ultra confortables."{% endif %}</p>
+                        <h4>- Paul T.</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUPPORT -->
+            <div class="support" id="contact">
+                <div class="first">
+                    <h3>{% if request.LANGUAGE_CODE == 'en' %}Need help?{% else %}Besoin d'aide ?{% endif %}</h3>
+                    <p>{% if request.LANGUAGE_CODE == 'en' %}Our support team is ready to answer your questions and organize a tailored booking for you.{% else %}Notre équipe de support est là pour répondre à vos questions et organiser votre réservation sur-mesure.{% endif %}</p>
+                    <a href="https://wa.me/243981446804" target="_blank" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Contact us on WhatsApp{% else %}{% trans "Contactez-nous sur WhatsApp" %}{% endif %}</a>
+                </div>
+                <img src="{% static '/photos/car2.png' %}" alt="{% if request.LANGUAGE_CODE == 'en' %}Side car image{% else %}right voiture{% endif %}">
+            </div>
+        {% endblock contents %}
+
+        {% block footer %}
+            <footer>
+            <div class="footer">
+                <div class="footer-grid">
+                    <div class="footer-about">
+                        <img src="{% static 'photos/logo_jktrans.jpg' %}" alt="JK Trans & Services" class="footer-logo">
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services — your trusted partner for vehicle rental and transport services in Kinshasa. Meta Verified.{% else %}JK Trans & Services — votre partenaire de confiance pour la location de véhicules et services de transport à Kinshasa. Abonné Meta Verified.{% endif %}</p>
+                    </div>
+                    <div class="footer-links">
+                        <h4>{% if request.LANGUAGE_CODE == 'en' %}Quick links{% else %}{% trans "Liens rapides" %}{% endif %}</h4>
+                        <ul>
+                            <li><a href="{% url 'home' %}">{% if request.LANGUAGE_CODE == 'en' %}Home{% else %}{% trans "Accueil" %}{% endif %}</a></li>
+                            <li><a href="{% url 'apropos' %}">{% if request.LANGUAGE_CODE == 'en' %}About us{% else %}{% trans "À propos" %}{% endif %}</a></li>
+                            <li><a href="{% url 'cars' %}">{% if request.LANGUAGE_CODE == 'en' %}Our vehicles{% else %}{% trans "Nos véhicules" %}{% endif %}</a></li>
+                            <li><a href="{% url 'contact' %}">{% if request.LANGUAGE_CODE == 'en' %}Contact{% else %}{% trans "Contact" %}{% endif %}</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>{% if request.LANGUAGE_CODE == 'en' %}Contact{% else %}Contact{% endif %}</h4>
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}Phone:{% else %}Téléphone :{% endif %} <a href="tel:+243981446804">+243 981 446 804</a></p>
+                        <p>Email : <a href="mailto:jktransservices4@gmail.com">jktransservices4@gmail.com</a></p>
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}Address:{% else %}Adresse :{% endif %} Haut commandement, prince de liège, en face de la nouvelle église Philadelphie, Kinshasa, Democratic Republic of the Congo</p>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4>{% if request.LANGUAGE_CODE == 'en' %}Offers & Newsletter{% else %}{% trans "Offres & Newsletter" %}{% endif %}</h4>
+                        <p>{% if request.LANGUAGE_CODE == 'en' %}Receive our promotions and news directly by email.{% else %}{% trans "Recevez nos promos et nouveautés directement par email." %}{% endif %}</p>
+                        <form action="" method="post" class="newsletter-form">
+                            {% csrf_token %}
+                            <input type="email" name="email" placeholder="{% if request.LANGUAGE_CODE == 'en' %}Your email address{% else %}Votre adresse email{% endif %}" required>
+                            <button type="submit" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Subscribe{% else %}{% trans "S'abonner" %}{% endif %}</button>
+                        </form>
+                        <div class="footer-social">
+                            <a href="https://wa.me/243981446804" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2026 JK Trans & Services. {% if request.LANGUAGE_CODE == 'en' %}All rights reserved.{% else %}Tous droits réservés.{% endif %}</p>
+        </footer>
+        {% endblock footer %}
+        {% block animation_js %}
+        {% endblock animation_js %}
+    </main>
+
+    <!-- Initialisation des scripts JS -->
+</body>
+</html>

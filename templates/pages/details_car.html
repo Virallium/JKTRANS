@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ vehicule.marque }} {{ vehicule.modele }} - JK Trans & Services{% endblock title %}
+
+{% block primary_content %}
+<section class="car-detail-section">
+    <div class="car-detail-card">
+        <div class="car-detail-image">
+            {% if vehicule.image %}
+                <img src="{{ vehicule.image.url }}" alt="{{ vehicule.marque }} {{ vehicule.modele }}">
+            {% else %}
+                <div class="car-detail-placeholder">
+                    <i class="fa-solid fa-car-side"></i>
+                    <p>{% if request.LANGUAGE_CODE == 'en' %}Image unavailable{% else %}Image non disponible{% endif %}</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="car-detail-info">
+            <h1>{{ vehicule.marque }} {{ vehicule.modele }}</h1>
+            <p class="car-detail-price">{{ vehicule.prix }} $ / jour</p>
+
+            <div class="car-detail-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> {% if request.LANGUAGE_CODE == 'en' %}Year:{% else %}Année :{% endif %} {{ vehicule.annee|date:"Y" }}</span>
+                <span><i class="fa-solid fa-palette"></i> {% if request.LANGUAGE_CODE == 'en' %}Color:{% else %}Couleur :{% endif %} {{ vehicule.couleur }}</span>
+                <span><i class="fa-solid fa-users"></i> {% if request.LANGUAGE_CODE == 'en' %}Seats:{% else %}Sièges :{% endif %} {{ vehicule.nombre_siege }}</span>
+                <span><i class="fa-solid fa-id-card"></i> {% if request.LANGUAGE_CODE == 'en' %}Plate:{% else %}Plaque :{% endif %} {{ vehicule.plaque }}</span>
+            </div>
+
+            <p class="car-detail-description">
+                {% if request.LANGUAGE_CODE == 'en' %}This car offers excellent driving comfort, great reliability and a modern design adapted to your trips in Kinshasa, whether for work, events or outings.{% else %}Cette voiture offre un excellent confort de conduite, une grande fiabilité et un design moderne adapté à vos déplacements à Kinshasa, que ce soit pour le travail, les événements ou les sorties.{% endif %}
+            </p>
+
+            <ul class="car-detail-list">
+                <li><i class="fa-solid fa-check"></i> {% if request.LANGUAGE_CODE == 'en' %}Premium interior comfort{% else %}Confort intérieur premium{% endif %}</li>
+                <li><i class="fa-solid fa-check"></i> {% if request.LANGUAGE_CODE == 'en' %}Regular maintenance and optimal safety{% else %}Entretien régulier et sécurité optimale{% endif %}</li>
+                <li><i class="fa-solid fa-check"></i> {% if request.LANGUAGE_CODE == 'en' %}Available with driver on request{% else %}Disponibilité avec chauffeur sur demande{% endif %}</li>
+            </ul>
+
+            {% if vehicule.Chauffeur %}
+                <p class="car-detail-driver">
+                    <strong>{% if request.LANGUAGE_CODE == 'en' %}Assigned driver:{% else %}Chauffeur assigné :{% endif %}</strong> {{ vehicule.Chauffeur.nom }} {{ vehicule.Chauffeur.prenom }}
+                </p>
+            {% endif %}
+
+            <div class="car-detail-actions">
+                <a href="https://wa.me/243981446804?text=Bonjour%20JK%20Trans%20%26%20Services,%20je%20souhaite%20r%C3%A9server%20la%20voiture%20{{ vehicule.marque }}%20{{ vehicule.modele }}" target="_blank" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Book on WhatsApp{% else %}Réserver sur WhatsApp{% endif %}</a>
+                <a href="{% url 'cars' %}" class="btn btn-secondary">{% if request.LANGUAGE_CODE == 'en' %}Back to catalog{% else %}Retour au catalogue{% endif %}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock primary_content %}
+
+{% block contents %}
+<section class="car-detail-extra">
+    <h2>{% if request.LANGUAGE_CODE == 'en' %}Why choose this car?{% else %}Pourquoi choisir cette voiture ?{% endif %}</h2>
+    <p>{% if request.LANGUAGE_CODE == 'en' %}It combines elegance, comfort and performance to meet all your travel needs for daily use or special occasions.{% else %}Elle combine élégance, confort et performance pour répondre à tous vos besoins de déplacement au quotidien ou pour des occasions spéciales.{% endif %}</p>
+</section>
+{% endblock contents %}

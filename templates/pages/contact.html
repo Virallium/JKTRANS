@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{% if request.LANGUAGE_CODE == 'en' %}Contact - JK Trans & Services{% else %}Contact - JK Trans & Services{% endif %}{% endblock title %}
+
+{% block primary_content %}
+<section class="page-section">
+    <div class="page-intro">
+        <h1>{% if request.LANGUAGE_CODE == 'en' %}Contact JK Trans & Services{% else %}Contactez JK Trans & Services{% endif %}</h1>
+        <p>{% if request.LANGUAGE_CODE == 'en' %}We are available to respond to all your rental, booking, or chauffeur service requests. JK Trans & Services is Meta Verified.{% else %}Nous sommes à votre disposition pour répondre à toutes vos demandes de location, réservation ou déplacement avec chauffeur. JK Trans & Services est abonné Meta Verified.{% endif %}</p>
+    </div>
+</section>
+{% endblock primary_content %}
+
+{% block contents %}
+<section class="page-section">
+    <div class="contact-grid">
+        <div class="contact-card" data-aos="fade-up">
+            <div class="card-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Our contact details{% else %}Nos coordonnées{% endif %}</h2>
+            <p><strong>{% if request.LANGUAGE_CODE == 'en' %}Address:{% else %}Adresse :{% endif %}</strong> Haut commandement, prince de liège, en face de la nouvelle église Philadelphie, Kinshasa, Democratic Republic of the Congo</p>
+            <p><strong>{% if request.LANGUAGE_CODE == 'en' %}Phone:{% else %}Téléphone :{% endif %}</strong> <a href="tel:+243981446804">+243 981 446 804</a></p>
+            <p><strong>Email :</strong> <a href="mailto:jktransservices4@gmail.com">jktransservices4@gmail.com</a></p>
+            <p><strong>{% if request.LANGUAGE_CODE == 'en' %}Socials:{% else %}Réseaux :{% endif %}</strong>
+                <a href="https://www.instagram.com/jktransservices" target="_blank" rel="noopener">Instagram</a> ·
+                <a href="https://tiktok.com/@jktrans_services" target="_blank" rel="noopener">TikTok</a> ·
+                <a href="https://www.facebook.com/jktransservices" target="_blank" rel="noopener">Facebook</a>
+            </p>
+            <p><strong>{% if request.LANGUAGE_CODE == 'en' %}Opening hours:{% else %}Horaires :{% endif %}</strong> {% if request.LANGUAGE_CODE == 'en' %}Open 7 days a week, from 08:00 to 20:00{% else %}Ouvert 7j/7, de 08h00 à 20h00{% endif %}</p>
+        </div>
+
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Why contact us?{% else %}Pourquoi nous contacter ?{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Whether you need a vehicle for business travel, a special event, or a visit to Kinshasa, our team supports you quickly and professionally.{% else %}Que vous ayez besoin d’un véhicule pour un déplacement professionnel, un événement spécial ou une visite à Kinshasa, notre équipe vous accompagne rapidement et avec professionnalisme.{% endif %}</p>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}You can also contact us directly on WhatsApp for an instant quote.{% else %}Vous pouvez aussi nous contacter directement sur WhatsApp pour obtenir un devis instantané.{% endif %}</p>
+        </div>
+    </div>
+
+    <div class="map-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="map-card-header">
+            <h2><i class="fa-solid fa-map-location-dot"></i> {% if request.LANGUAGE_CODE == 'en' %}Our location{% else %}Notre emplacement{% endif %}</h2>
+            <a href="https://www.google.com/maps?q=Kinshasa,DRC" target="_blank">{% if request.LANGUAGE_CODE == 'en' %}Open in Google Maps{% else %}Ouvrir dans Google Maps{% endif %}</a>
+        </div>
+        <iframe
+            src="https://www.google.com/maps?q=Kinshasa,DRC&z=12&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+{% endblock contents %}

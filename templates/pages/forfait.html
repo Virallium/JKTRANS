@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{% if request.LANGUAGE_CODE == 'en' %}Packages - JK Trans & Services{% else %}Forfaits - JK Trans & Services{% endif %}{% endblock title %}
+
+{% block primary_content %}
+<section class="page-section">
+    <div class="page-intro">
+        <h1>{% if request.LANGUAGE_CODE == 'en' %}Our Packages{% else %}Nos forfaits{% endif %}</h1>
+        <p>{% if request.LANGUAGE_CODE == 'en' %}Discover our rental plans designed to meet a range of needs, whether for occasional use or regular service.{% else %}Découvrez nos formules de location pensées pour répondre à différents besoins, que ce soit pour un usage ponctuel ou régulier.{% endif %}</p>
+    </div>
+</section>
+{% endblock primary_content %}
+
+{% block contents %}
+<section class="page-section">
+    <div class="service-grid">
+        <div class="contact-card" data-aos="fade-up">
+            <div class="card-icon"><i class="fa-solid fa-tag"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Standard Package{% else %}Forfait Standard{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Ideal for daily trips, with a comfortable vehicle at an affordable price.{% else %}Idéal pour les déplacements quotidiens, avec un véhicule confortable à prix accessible.{% endif %}</p>
+        </div>
+
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon"><i class="fa-solid fa-crown"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Premium Package{% else %}Forfait Premium{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Perfect for business travel or special occasions, with a driver and priority service.{% else %}Parfait pour les trajets professionnels ou les occasions spéciales, avec chauffeur et service prioritaire.{% endif %}</p>
+        </div>
+
+        <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-icon"><i class="fa-solid fa-gifts"></i></div>
+            <h2>{% if request.LANGUAGE_CODE == 'en' %}Event Package{% else %}Forfait Événement{% endif %}</h2>
+            <p>{% if request.LANGUAGE_CODE == 'en' %}Suited for weddings, ceremonies, group outings and other events where elegance and punctuality matter.{% else %}Adapté aux mariages, cérémonies, sorties de groupe et autres événements où l’élégance et la ponctualité comptent.{% endif %}</p>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

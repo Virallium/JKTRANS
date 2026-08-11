@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{% if request.LANGUAGE_CODE == 'en' %}Vehicle Catalog - JK Trans & Services{% else %}Catalogue des Véhicules - JK Trans & Services{% endif %}{% endblock title %}
+
+{% block primary_content %}
+<!-- EN-TÊTE DU CATALOGUE -->
+<div class="primary-section catalog-hero">
+    <div class="primary_text">
+        <h1>{% if request.LANGUAGE_CODE == 'en' %}Our Vehicle Catalog{% else %}Notre Catalogue Automobile{% endif %}</h1>
+        <p>
+            {% if request.LANGUAGE_CODE == 'en' %}Explore our full fleet available in Kinshasa. Filter by brand to quickly find the car that suits your needs.{% else %}Découvrez l'ensemble de notre flotte disponible à Kinshasa. Filtrez par marque pour trouver rapidement la voiture adaptée à vos besoins.{% endif %}
+        </p>
+    </div>
+    <div class="pic">
+        <img src="{% static 'photos/bg4.png' %}" alt="{% if request.LANGUAGE_CODE == 'en' %}JK Trans & Services vehicle fleet{% else %}Flotte de véhicules JK Trans & Services{% endif %}">
+    </div>
+</div>
+
+<!-- BARRE DE RECHERCHE ET FILTRES PAR MARQUE -->
+<div class="find_car filter-panel">
+    <p class="filter-heading">{% if request.LANGUAGE_CODE == 'en' %}Filter by brand{% else %}Filtrer par Marque{% endif %}</p>
+    <div class="brand-filters">
+        <a href="{% url 'cars' %}" class="btn {% if not request.GET.brand %}active-filter{% endif %}">
+            {% if request.LANGUAGE_CODE == 'en' %}All brands{% else %}Toutes les marques{% endif %}
+        </a>
+        {% for brand in brands %}
+            <a href="{% url 'cars' %}?brand={{ brand|urlencode }}" class="btn {% if request.GET.brand == brand %}active-filter{% endif %}">
+                {{ brand }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <!-- RECHERCHE TEXTUELLE COMPLÉMENTAIRE -->
+    <form action="{% url 'cars' %}" method="get" class="filter-search">
+        {% if request.GET.brand %}
+            <input type="hidden" name="brand" value="{{ request.GET.brand }}">
+        {% endif %}
+        <div class="input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" name="q" placeholder="{% if request.LANGUAGE_CODE == 'en' %}Search for a specific model (ex: Land Cruiser, Prado...){% else %}Rechercher un modèle précis (ex: Land Cruiser, Prado...){% endif %}" value="{{ request.GET.q|default:'' }}">
+        </div>
+        <button type="submit" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Search{% else %}Rechercher{% endif %}</button>
+    </form>
+</div>
+{% endblock primary_content %}
+
+{% block contents %}
+<!-- AFFICHAGE DES VÉHICULES DU CATALOGUE -->
+<div class="catalog">
+    <h3>
+        <span class="left_divider"></span>
+        {% if request.GET.brand %}
+            {% if request.LANGUAGE_CODE == 'en' %}Vehicles {{ request.GET.brand }}{% else %}Véhicules {{ request.GET.brand }}{% endif %}
+        {% else %}
+            {% if request.LANGUAGE_CODE == 'en' %}All our vehicles{% else %}Tous nos Véhicules{% endif %}
+        {% endif %}
+        <span class="right_divider"></span>
+    </h3>
+    
+    <h2>
+        {% if request.GET.brand %}
+            {% if request.LANGUAGE_CODE == 'en' %}Available models from {{ request.GET.brand }}{% else %}Modèles disponibles de la marque {{ request.GET.brand }}{% endif %}
+        {% else %}
+            {% if request.LANGUAGE_CODE == 'en' %}A full selection for all your trips{% else %}Une sélection complète pour tous vos déplacements{% endif %}
+        {% endif %}
+    </h2>
+
+    <div class="cars">
+        {% for vehicle in cars %}
+            <div class="car" data-aos="fade-up">
+                <div class="car_img">
+                    {% if vehicle.image %}
+                        <img src="{{ vehicle.image.url }}" alt="{{ vehicle.marque }} {{ vehicle.modele }}">
+                    {% else %}
+                        <img src="{% static 'media/photos/default_car.png' %}" alt="{{ vehicle.marque }} {{ vehicle.modele }}">
+                    {% endif %}
+                </div>
+                <div class="car_info">
+                    <span class="car-brand">
+                        {{ vehicle.marque }}
+                    </span>
+                    <h4>{{ vehicle.modele }}</h4>
+                    <p>{{ vehicle.description|truncatewords:20 }}</p>
+                    <h3>{{ vehicle.prix }} $/jour</h3>
+                    
+                    <div class="car-actions">
+                        <a href="{% url 'vehicle_detail' vehicle.pk %}" class="btn car-detail-btn">{% if request.LANGUAGE_CODE == 'en' %}View details{% else %}Voir détails{% endif %}</a>
+                        <a href="https://wa.me/243981446804?text=Bonjour%20JK%20Trans%20%26%20Services,%20je%20souhaite%20r%C3%A9server%20le%20v%C3%A9hicule%20{{ vehicle.marque }}%20{{ vehicle.modele }}" target="_blank" class="btn-wa" title="{% if request.LANGUAGE_CODE == 'en' %}Book on WhatsApp{% else %}Réserver sur WhatsApp{% endif %}">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="nocar_box">
+                <div class="no-car">
+                    <i class="fa-solid fa-car-side"></i>
+                    <p>{% if request.LANGUAGE_CODE == 'en' %}No cars found for this brand or search criteria.{% else %}Aucun véhicule trouvé pour cette marque ou ces critères de recherche.{% endif %}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- PAGINATION -->
+    {% if cars.has_other_pages %}
+        <div class="pagination">
+            {% if cars.has_previous %}
+                <a href="?page={{ cars.previous_page_number }}{% if request.GET.brand %}&brand={{ request.GET.brand }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Previous{% else %}Précédent{% endif %}</a>
+            {% endif %}
+
+            <span class="pagination-info">
+                {% if request.LANGUAGE_CODE == 'en' %}Page{% else %}Page{% endif %} {{ cars.number }} {% if request.LANGUAGE_CODE == 'en' %}of{% else %}sur{% endif %} {{ cars.paginator.num_pages }}
+            </span>
+
+            {% if cars.has_next %}
+                <a href="?page={{ cars.next_page_number }}{% if request.GET.brand %}&brand={{ request.GET.brand }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn">{% if request.LANGUAGE_CODE == 'en' %}Next{% else %}Suivant{% endif %}</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock contents %}
