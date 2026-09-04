@@ -77,28 +77,30 @@
         <div class="rgba"></div>
         <header>
             {% block nav %}
-                <nav>
+                <div class="header">
                     <div class="logo">
                         <img src="{% static 'photos/logo_jktrans.jpg' %}" alt="Logo JK Trans & Services">
                     </div>
-                    <ul>
-                        <li><a href="{% url 'home' %}">{% if request.LANGUAGE_CODE == 'en' %}Home{% else %}{% trans "Accueil" %}{% endif %}</a></li>
-                        <li><a href="{% url 'apropos' %}">{% if request.LANGUAGE_CODE == 'en' %}About us{% else %}{% trans "À propos" %}{% endif %}</a></li>
-                        <li><a href="{% url 'service' %}">{% if request.LANGUAGE_CODE == 'en' %}Services{% else %}{% trans "Services" %}{% endif %}</a></li>
-                        <li><a href="{% url 'contact' %}">{% if request.LANGUAGE_CODE == 'en' %}Contact{% else %}{% trans "Contact" %}{% endif %}</a></li>
-                    </ul>
-                    
-                    <!-- Sélecteur de langue -->
-                    <div class="lang-form">
-                        <a href="{{ request.path }}?lang=fr" class="lang-link">Français</a>
-                        <a href="{{ request.path }}?lang=en" class="lang-link">English</a>
-                    </div>
-                    
+                    <nav>
+                        
+                        <ul>
+                            <li><a href="{% url 'home' %}">{% if request.LANGUAGE_CODE == 'en' %}Home{% else %}{% trans "Accueil" %}{% endif %}</a></li>
+                            <li><a href="{% url 'apropos' %}">{% if request.LANGUAGE_CODE == 'en' %}About us{% else %}{% trans "À propos" %}{% endif %}</a></li>
+                            <li><a href="{% url 'service' %}">{% if request.LANGUAGE_CODE == 'en' %}Services{% else %}{% trans "Services" %}{% endif %}</a></li>
+                            <li><a href="{% url 'contact' %}">{% if request.LANGUAGE_CODE == 'en' %}Contact{% else %}{% trans "Contact" %}{% endif %}</a></li>
+                        </ul>
+                        
+                        <!-- Sélecteur de langue -->
+                        <div class="lang-form">
+                            <a href="{{ request.path }}?lang=fr" class="lang-link">Français</a>
+                            <a href="{{ request.path }}?lang=en" class="lang-link">English</a>
+                        </div>
+                    </nav>
                     <div class="btns_conx">
                         {% if request.session.admininfo_id %}
                             <a href="{% url 'Admin' %}" id="connexion">Admin</a>
                             <form action="{% url 'deconnexion' %}" method="post">
-                                {% csrf_token %}
+                                    {% csrf_token %}
                                 <button type="submit" id="deconnexion">{% if request.LANGUAGE_CODE == 'en' %}Logout{% else %}{% trans "Déconnexion" %}{% endif %}</button>
                             </form>
                         {% else %}
@@ -106,8 +108,9 @@
                         {% endif %}
                         <i class="fa-solid fa-bars-staggered" id="menu"></i>
                     </div>
-                </nav>
+                </div>
             {% endblock nav %}
+                
 
             <!-- SECTION HEADER PRESENTATION -->
             {% block primary_content %}
@@ -192,18 +195,20 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         {% empty %}
                             <div class="no-car">
-                                <i class="fa-solid fa-car-side"></i>
-                                <p>{% if request.LANGUAGE_CODE == 'en' %}No vehicles available right now.{% else %}Aucun véhicule disponible pour le moment.{% endif %}</p>
-                                        <div class="card_info">
-                                            <h4>{{ vehicle.marque }} {{ vehicle.modele }}</h4>
-                                            <p>{{ vehicle.description|truncatewords:15 }}</p>
-                                            <h3>{{ vehicle.prix }} $/jour</h3>
-                                            <a href="https://wa.me/243981446804?text=Bonjour%20JK%20Trans%20%26%20Services,%20je%20souhaite%20r%C3%A9server%20le%20v%C3%A9hicule%20{{ vehicle.marque }}%20{{ vehicle.modele }}" target="_blank" class="btn-wa">{% if request.LANGUAGE_CODE == 'en' %}Book{% else %}{% trans "Réserver" %}{% endif %}</a>
-                                        </div>
+                                <div class="no-car_box">
+                                    <i class="fa-solid fa-car-side"></i>
+                                    <p>{% if request.LANGUAGE_CODE == 'en' %}No vehicles available right now.{% else %}Aucun véhicule disponible pour le moment.{% endif %}</p>
+                                    <div class="card_info">
+                                        <h4>{{ vehicle.marque }} {{ vehicle.modele }}</h4>
+                                        <p>{{ vehicle.description|truncatewords:15 }}</p>
+                                        <h3>{{ vehicle.prix }} $/jour</h3>
+                                        <a href="https://wa.me/243981446804?text=Bonjour%20JK%20Trans%20%26%20Services,%20je%20souhaite%20r%C3%A9server%20le%20v%C3%A9hicule%20{{ vehicle.marque }}%20{{ vehicle.modele }}" target="_blank" class="btn-wa">{% if request.LANGUAGE_CODE == 'en' %}Book{% else %}{% trans "Réserver" %}{% endif %}</a>
                                     </div>
                                 </div>
+                            </div>
                             {% endfor %}
                         </div>
                         <div class="swiper-pagination"></div>
