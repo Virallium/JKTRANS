@@ -93,10 +93,10 @@
                 </div>
             </div>
         {% empty %}
-            <div class="nocar_box">
-                <div class="no-car">
+            <div class="no-car">
+                <div class="no-car_box">
                     <i class="fa-solid fa-car-side"></i>
-                    <p>{% if request.LANGUAGE_CODE == 'en' %}No cars found for this brand or search criteria.{% else %}Aucun véhicule trouvé pour cette marque ou ces critères de recherche.{% endif %}</p>
+                    <p>{% if request.LANGUAGE_CODE == 'en' %}No vehicles available right now.{% else %}Aucun véhicule disponible pour le moment.{% endif %}</p>
                 </div>
             </div>
         {% endfor %}

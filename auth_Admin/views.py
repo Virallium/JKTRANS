@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login, logout
 from .forms import Connexion
-from .models import Admininfo
+from django.contrib.auth.models import User
 
 DEFAULT_ADMIN_EMAIL = 'jktransadmin@gmail.com'
 DEFAULT_ADMIN_PASSWORD = 'JKTransAdmin2026'
@@ -14,18 +14,13 @@ def connexion(request):
             email = form.cleaned_data['email']
             mot_de_passe = form.cleaned_data['mot_de_passe']
 
-            admin_user = Admininfo.objects.filter(email__iexact=email).first()
-            if admin_user is None and Admininfo.objects.count() == 0 and email.lower() == DEFAULT_ADMIN_EMAIL:
-                admin_user = Admininfo.objects.create(
-                    email=DEFAULT_ADMIN_EMAIL,
-                    mot_de_passe=make_password(DEFAULT_ADMIN_PASSWORD),
-                )
-
-            if admin_user is None or not admin_user.check_password(mot_de_passe):
-                form.add_error(None, 'Email ou mot de passe incorrect.')
-            else:
-                request.session['admininfo_id'] = admin_user.id
-                request.session['admininfo_email'] = admin_user.email
+            django_user = authenticate(request, username=email, password=mot_de_passe)
+            if django_user is not None and django_user.is_active and (
+                django_user.is_staff or django_user.is_superuser
+            ):
+                login(request, django_user)
+                request.session['admininfo_id'] = django_user.id
+                request.session['admininfo_email'] = django_user.email or django_user.username
                 messages.success(request, 'Connexion réussie.')
                 return redirect('Admin')
     else:
@@ -35,6 +30,7 @@ def connexion(request):
 
 
 def logout_view(request):
+    logout(request)
     request.session.pop('admininfo_id', None)
     request.session.pop('admininfo_email', None)
     messages.info(request, 'Vous avez bien été déconnecté.')

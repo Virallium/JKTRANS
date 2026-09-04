@@ -1,9 +1,10 @@
 from django import forms
 
 class Connexion(forms.Form):
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={
-            'placeholder': 'Votre adresse email',
+    email = forms.CharField(
+        label='Identifiant ou adresse email',
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Votre identifiant ou adresse email',
             'class': 'form-input',
             'id': 'email',
         })

@@ -28,8 +28,8 @@
                 {% endif %}
 
                 <div class="auth-field">
-                    <label for="email">{% if request.LANGUAGE_CODE == 'en' %}Email{% else %}Adresse email{% endif %}</label>
-                    <input type="email" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" placeholder="{% if request.LANGUAGE_CODE == 'en' %}Your email{% else %}Votre adresse email{% endif %}" required>
+                    <label for="email">{% if request.LANGUAGE_CODE == 'en' %}Username or email{% else %}Identifiant ou adresse email{% endif %}</label>
+                    <input type="text" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" placeholder="{% if request.LANGUAGE_CODE == 'en' %}Your username or email{% else %}Votre identifiant ou adresse email{% endif %}" autocomplete="username" required>
                     {% if form.email.errors %}
                         <div class="form-error">{{ form.email.errors }}</div>
                     {% endif %}

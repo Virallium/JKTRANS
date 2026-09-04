@@ -1742,7 +1742,7 @@ nav ul li a:hover {
 }
 .services .service{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
 }
 .car_info h4 {
   font-size: 1.2rem;
@@ -1821,7 +1821,7 @@ nav ul li a:hover {
 
 .service, .choosing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
 }
 
@@ -1869,7 +1869,7 @@ nav ul li a:hover {
 }
 .middle_image{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     place-items:center;
     gap:1rem;
     background-color:var(--surface-white);
@@ -1931,14 +1931,14 @@ nav ul li a:hover {
 
 .testimony h3 {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
   text-transform: uppercase;
   margin-bottom: 45px;
 }
 
 .testimonies {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
 }
 
@@ -1979,7 +1979,7 @@ nav ul li a:hover {
 
 .support .first h3 {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
   color: var(--dark-carbon);
   text-transform: uppercase;
   margin-bottom: 15px;
