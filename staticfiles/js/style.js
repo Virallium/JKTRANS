@@ -58,14 +58,14 @@ function menu_toggle(){
 menu_toggle();
 
 function scroll_nav(){
-    const nav = document.querySelector('nav');
+    const header = document.querySelector('.header');
     const scrollThreshold = 150;
     window.addEventListener('scroll', ()=>{
         if (window.scrollY > scrollThreshold){
-            nav.classList.add('scrolled')
+            header.classList.add('scrolled')
         }
         else{
-            nav.classList.remove('scrolled')
+            header.classList.remove('scrolled')
         }
     })
 }
